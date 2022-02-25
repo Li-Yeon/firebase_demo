@@ -1,3 +1,4 @@
+import 'dashboard.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -47,7 +48,7 @@ class _LoginState extends State<Login> {
             child:
             TextFormField(
               controller: _controller,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                     labelText: "Email",
                     labelStyle: TextStyle(
@@ -74,7 +75,7 @@ class _LoginState extends State<Login> {
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
               controller: _passController,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
                 labelText: "Password",
                 labelStyle: TextStyle(
@@ -167,6 +168,7 @@ class _LoginState extends State<Login> {
     _controller.clear();
     _passController.clear();
     print('Successfully signed in.');
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
     }
 
   }
