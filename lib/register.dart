@@ -21,10 +21,10 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[900],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Register'),
-        backgroundColor: Colors.lightBlue[800],
+        backgroundColor: Colors.grey[850],
         centerTitle: true,
       ),
       body: Form(
@@ -36,14 +36,14 @@ class _RegisterState extends State<Register> {
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
               controller: _fullnameController,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                     labelText: "Full Name",
                     labelStyle: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10))
+                        borderRadius: BorderRadius.circular(40))
                         ),
                         onChanged: (String namee) {
                           setState(() {
@@ -63,14 +63,14 @@ class _RegisterState extends State<Register> {
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
               controller: _emailController,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                     labelText: "Email",
                     labelStyle: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10))
+                        borderRadius: BorderRadius.circular(40))
                         ),
                         onChanged: (String namee) {
                           setState(() {
@@ -90,14 +90,14 @@ class _RegisterState extends State<Register> {
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
               controller: _passController,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
                 labelText: "Password",
                 labelStyle: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                 ),               
                 border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
               ),
               obscureText: true,
               onChanged: (String passwordd) {
@@ -123,7 +123,7 @@ class _RegisterState extends State<Register> {
                 child: ElevatedButton(
                   child: Text(
                     "REGISTER",
-                    style: TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 2),
+                    style: TextStyle(color: Colors.black, fontSize: 18, letterSpacing: 2),
                     ),
                   onPressed: () {
                     if(_formKey.currentState!.validate())
@@ -135,12 +135,18 @@ class _RegisterState extends State<Register> {
                       print("Invalid");
                     }
                   },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.redAccent,
-                    elevation: 5
-                  )           
-                )
-              ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                          side: BorderSide(color: Colors.black),
+                        ),
+                  
+                    ),
+                  ),
+                  ),           
+                ),
             ],
           )
         ],
