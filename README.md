@@ -1,9 +1,7 @@
-# firebase_demo
+# Firebase Authentication Demo with Flutter
 
 Integrating Firebase as backend with Flutter.
 
-## Getting Started
+## About this
 
-This project is a starting point for a Flutter application.
-
-This is just a [work in progress] of a simple firebase demo with Flutter.
+This is a simple Firebase Authentication with Flutter.
