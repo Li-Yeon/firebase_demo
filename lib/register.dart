@@ -1,5 +1,6 @@
 import 'package:firebase_demo/Services/AuthenticationService.dart';
 import 'package:flutter/material.dart';
+import 'DatabaseManager/DatabaseManager.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
 
   final AuthenticationServices _auth = AuthenticationServices();
+  final DatabaseManager _db = DatabaseManager();
 
   @override
   Widget build(BuildContext context) {
@@ -167,6 +169,7 @@ class _RegisterState extends State<Register> {
       _fullnameController.clear();
       _emailController.clear();
       _passController.clear();
+      await _db.createUser(name: _fullName);
       Navigator.pop(context);
     }
   }

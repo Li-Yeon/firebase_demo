@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_demo/DatabaseManager/DatabaseManager.dart';
 import 'package:firebase_demo/Services/AuthenticationService.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,8 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
 
   final AuthenticationServices _auth = AuthenticationServices();
-
+  Stream<List<User>> readUsers() => FirebaseFirestore.instance.collection('users').snapshots().map((snapshot) => snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,15 +39,32 @@ class _DashboardState extends State<Dashboard> {
           ),
         ],
       ),
-      body: ListView.builder(itemCount: 1, itemBuilder: (context, index) {
-        return Card(
-          child: ListTile(
-            title:Text('Grab Food'),
+      body: StreamBuilder<List<User>>(
+        stream: readUsers(),
+        builder: (context, snapshot) {
+          if(snapshot.hasData) {
+            final users = snapshot.data!;
+            return ListView (
+              children: users.map(buildUser).toList(),
+            );
+          }
+          else
+          {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        }
+      )
+    );
+  }
+  Widget buildUser(User user) {
+    return Card(
+        child: ListTile(
+            title:Text(user.name),
             subtitle: Text('RM17.00'),
             trailing: Icon(Icons.money_off),
           )
-        );
-      })
     );
   }
 }
